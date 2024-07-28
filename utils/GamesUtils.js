@@ -1,4 +1,4 @@
-export const pointsCalculation = (predictedResult, actualResult) => {
+const pointsCalculation = (predictedResult, actualResult) => {
     if (predictedResult === actualResult) {
         return 3;
     } else {
@@ -33,3 +33,5 @@ const findCloseScore = (predArray, actArray) => {
         return 1;
     }
 }
+
+module.exports = pointsCalculation;
