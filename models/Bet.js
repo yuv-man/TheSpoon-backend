@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
 const betSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -8,4 +9,5 @@ const betSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export default model('Bet', betSchema);
+const Bet = mongoose.model('Bet', betSchema);
+module.exports = Bet
