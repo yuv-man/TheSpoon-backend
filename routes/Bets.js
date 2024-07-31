@@ -25,5 +25,42 @@ router.put('/bets/:id', async (req, res) => {
     res.send(bet);
 });
 
+app.get('/bets/:userId/bets', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Find all bets for the specific user
+    const bets = await BetModel.find({ user: userId });
+
+    if (!bets.length) {
+      return res.status(404).send('No bets found for this user');
+    }
+
+    res.send(bets);
+  } catch (error) {
+    console.error('Failed to retrieve bets:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/bets/:betId', async (req, res) => {
+  try {
+    const betId = req.params.betId;
+
+    // Find the bet by its ID
+    const bet = await BetModel.findById(betId);
+
+    if (!bet) {
+      return res.status(404).send('Bet not found');
+    }
+
+    res.send(bet);
+  } catch (error) {
+    console.error('Failed to retrieve bet:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 module.exports = router;
   

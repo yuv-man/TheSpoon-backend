@@ -25,6 +25,16 @@ router.post('/users', async (req, res) => {
     }
   });
 
+  router.post('/users/login', async (req, res) => {
+    const { name, password } = req.body;
+
+    const user = await UserModel.findOne({ name });
+    if (!user) return res.status(404).send('User not found');
+    if (user.password !== password) return res.status(401).send('Invalid password');
+
+    res.send(user);
+  })
+
   router.get('/users', async (req, res) => {
     const users = await UserModel.find();
     res.send(users);
