@@ -25,7 +25,7 @@ router.put('/bets/:id', async (req, res) => {
     res.send(bet);
 });
 
-app.get('/bets/:userId/bets', async (req, res) => {
+router.get('/bets/:userId/bets', async (req, res) => {
   try {
     const userId = req.params.userId;
 
@@ -43,7 +43,7 @@ app.get('/bets/:userId/bets', async (req, res) => {
   }
 });
 
-app.get('/bets/:betId', async (req, res) => {
+router.get('/bets/:betId', async (req, res) => {
   try {
     const betId = req.params.betId;
 
